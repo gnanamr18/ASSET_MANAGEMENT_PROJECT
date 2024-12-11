@@ -1,10 +1,18 @@
 import React from "react";
 import EmployeeForm from "./EmployeeForm";
 
-const Modale = ({ employeeData, onSave, columns }) => {
+const Modale = ({ employeeData, onSave, columns,  }) => {
   const handleSubmit = () => {
     onSave(employeeData); // Call the parent save function
   };
+  const handleClose = () =>{
+    onSave({
+      name: "",
+      id: "",
+      dept: "",
+      designation: "",
+    })
+  }
 
   return (
     <div
@@ -26,6 +34,7 @@ const Modale = ({ employeeData, onSave, columns }) => {
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              onClick={handleClose}
             ></button>
           </div>
           <div className="modal-body">
@@ -40,6 +49,7 @@ const Modale = ({ employeeData, onSave, columns }) => {
               type="button"
               className="btn btn-secondary"
               data-bs-dismiss="modal"
+              onClick={handleClose}
             >
               Close
             </button>

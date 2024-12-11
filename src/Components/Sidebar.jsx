@@ -31,7 +31,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/stocks">
+            <Link className="nav-link text-white" to="/dept">
               <i class="bi bi-bank2"></i> 
               Dept
             </Link>
