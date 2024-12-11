@@ -1,12 +1,13 @@
 import React from 'react'
+import { useState,useEffect } from 'react';
 
-const AssetForm = () => {
+const AssetForm = (columns,assetData) => {
     const [formData, setFormData] = useState({});
 
-    // Sync formData with employeeData whenever it changes
+    // Sync formData with assetData whenever it changes
     useEffect(() => {
-      setFormData(employeeData);
-    }, [employeeData]);
+      setFormData(assetData);
+    }, [assetData]);
   
     // Handle input change dynamically
     const handleChange = (e, field) => {

@@ -1,44 +1,63 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Modale from "../Components/Modale"; // Updated to import Modal component
 import Table from "../Components/Table";
+import NavPills from "../Components/NavPills";
+import { getAssets } from "../API/dept";
+import { assetColumns } from "../Data/data";
 
 const Assets = () => {
-  let columns = [
-    { heading:"ADD NEW ASSET",name: "Name", placeholder: "Enter the Name" },
-    { heading:"ADD NEW ASSET",name: "ID", placeholder: "Enter the ID" },
-    { heading:"ADD NEW ASSET",name: "Dept", placeholder: "Enter the Department" },
-  ];
-
-  const [employeeData, setEmployeeData] = useState({
+  const [assetData, setAssetData] = useState({
     name: "",
     id: "",
     dept: "",
     designation: "",
   });
-
+  const [dept, setDept] = useState("IT");
+  const [row, setRow] = useState()
+  
   const handleEmployeeSave = (data) => {
     console.log("Employee saved:", data);
-    setEmployeeData(data);
+    setAssetData(data);
   };
+
+  const Dept = (selectDept) => {
+    setDept(selectDept);
+  };
+  const getAsset = async (dept) => {
+    console.log(dept)
+    const res = await getAssets(dept);
+    console.log(res, "assets");
+    setRow(res.data.data)
+  };
+
+  useEffect(() => {
+    if (dept) {
+      getAsset(dept);
+    }
+  }, [dept]);
   return (
     <div>
-      <button
-        type="button"
-        className="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#employeeModal"
-      >
-        Add Asset
-      </button>
+      <div>
+        <button
+          type="button"
+          className="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#employeeModal"
+        >
+          Add Asset
+        </button>
+        <NavPills Dept={Dept} />
 
-      <Modale
-        employeeData={employeeData}
-        onSave={handleEmployeeSave}
-        columns={columns}
-      />
-      <Table columns={columns} />
+        <Modale
+          assetData={assetData}
+          onSave={handleEmployeeSave}
+          columns={assetColumns}
+          formType="asset"
+        />
+        <Table columns={assetColumns} row={row} />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Assets
+export default Assets;

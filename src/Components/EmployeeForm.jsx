@@ -19,7 +19,6 @@ const EmployeeForm = ({ employeeData, columns, onSave }) => {
     <form>
       {columns.map((item, index) => (
         <div key={index} className="mb-3">
-            {console.log(item)}
           <label htmlFor={item.name.toLowerCase()} className="col-form-label">
             {item.name}:
           </label> */

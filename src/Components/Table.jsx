@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from './Button'
 
-const Table = ({columns}) => {
+const Table = ({columns,row}) => {
+  console.log(row,'row')
   return (
     <table class="table">
   <thead>
@@ -13,13 +14,19 @@ const Table = ({columns}) => {
         </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+  {row?.map((row, index) => (
+  <tr key={index}>
+    {/* Uncomment if you want to include a row index */}
+    {/* <th scope="row">{index + 1}</th> */}
+    <td>{row?.name}</td>
+    <td>{row.uniqueId}</td>
+    <td>{row.status}</td>
+    <td>
       <Button text="Delete" className="bg-danger text-white" />
-    </tr>
+    </td>
+  </tr>
+))}
+
   </tbody>
 </table>
   )

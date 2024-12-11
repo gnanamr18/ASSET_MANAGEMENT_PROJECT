@@ -1,7 +1,8 @@
 import React from "react";
 import EmployeeForm from "./EmployeeForm";
+import AssetForm from "./AssetForm";
 
-const Modale = ({ employeeData, onSave, columns,  }) => {
+const Modale = ({ employeeData, onSave, columns, assetData,formType  }) => {
   const handleSubmit = () => {
     onSave(employeeData); // Call the parent save function
   };
@@ -38,11 +39,19 @@ const Modale = ({ employeeData, onSave, columns,  }) => {
             ></button>
           </div>
           <div className="modal-body">
-            <EmployeeForm
-              employeeData={employeeData}
-              onSave={onSave}
-              columns={columns}
-            />
+          {formType === "asset" ? (
+              <AssetForm
+                assetData={assetData}
+                onSave={onSave}
+                columns={columns}
+              />
+            ) : (
+              <EmployeeForm
+                employeeData={employeeData}
+                onSave={onSave}
+                columns={columns}
+              />
+            )}
           </div>
           <div className="modal-footer">
             <button
@@ -58,7 +67,7 @@ const Modale = ({ employeeData, onSave, columns,  }) => {
               className="btn btn-primary"
               onClick={handleSubmit}
             >
-              Save Employee
+              {formType === "asset" ? "Create Asset" : "Add Employee"}
             </button>
           </div>
         </div>
