@@ -18,7 +18,6 @@ const Employee = () => {
   });
 
   const handleEmployeeSave = (data) => {
-    console.log("Employee saved:", data);
     setEmployeeData(data);
   };
 

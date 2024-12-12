@@ -7,11 +7,9 @@ const NavPills = ({Dept}) => {
 
   const  depts  = useContext(Context);
   const handleOnClick=(dept)=>{
-    console.log(dept)
     setSelectedDept(dept)
     Dept(dept)
   }
-  console.log(depts)
 
   return (
     <div className="nav nav-pills mb-3 mt-3" role="tablist">

@@ -1,18 +1,17 @@
 import React from "react";
 import EmployeeForm from "./EmployeeForm";
 import AssetForm from "./AssetForm";
+import { createAsset } from "../API/asset";
 
-const Modale = ({ employeeData, onSave, columns, assetData,formType  }) => {
-  const handleSubmit = () => {
-    onSave(employeeData); // Call the parent save function
+const Modale = ({columns,formType ,setFormData,formData }) => {
+  
+  const handleSubmit = async (formData) => {
+    const res = await createAsset(formData);
+    console.log(formData)
+    console.log(res, 'modale')
   };
   const handleClose = () =>{
-    onSave({
-      name: "",
-      id: "",
-      dept: "",
-      designation: "",
-    })
+    setFormData({})
   }
 
   return (
@@ -41,14 +40,13 @@ const Modale = ({ employeeData, onSave, columns, assetData,formType  }) => {
           <div className="modal-body">
           {formType === "asset" ? (
               <AssetForm
-                assetData={assetData}
-                onSave={onSave}
                 columns={columns}
+                setFormData={setFormData}
+                formData={formData}
+
               />
             ) : (
               <EmployeeForm
-                employeeData={employeeData}
-                onSave={onSave}
                 columns={columns}
               />
             )}
@@ -65,7 +63,7 @@ const Modale = ({ employeeData, onSave, columns, assetData,formType  }) => {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={handleSubmit}
+              onClick={()=>{handleSubmit(formData)}}
             >
               {formType === "asset" ? "Create Asset" : "Add Employee"}
             </button>

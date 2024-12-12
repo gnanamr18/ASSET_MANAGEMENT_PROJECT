@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
 
@@ -13,7 +12,6 @@ export const getDepts = async () => {
   }
 };
 export const getAssets = async (dept) => {
-  console.log(dept,'func')
 
   try {
 

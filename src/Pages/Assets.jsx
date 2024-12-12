@@ -3,30 +3,18 @@ import Modale from "../Components/Modale"; // Updated to import Modal component
 import Table from "../Components/Table";
 import NavPills from "../Components/NavPills";
 import { getAssets } from "../API/dept";
-import { assetColumns } from "../Data/data";
+import { assetColumns,assetTableColumns } from "../Data/data";
 
 const Assets = () => {
-  const [assetData, setAssetData] = useState({
-    name: "",
-    id: "",
-    dept: "",
-    designation: "",
-  });
   const [dept, setDept] = useState("IT");
   const [row, setRow] = useState()
+  const [formData, setFormData] = useState({});
   
-  const handleEmployeeSave = (data) => {
-    console.log("Employee saved:", data);
-    setAssetData(data);
-  };
-
   const Dept = (selectDept) => {
     setDept(selectDept);
   };
   const getAsset = async (dept) => {
-    console.log(dept)
     const res = await getAssets(dept);
-    console.log(res, "assets");
     setRow(res.data.data)
   };
 
@@ -49,12 +37,12 @@ const Assets = () => {
         <NavPills Dept={Dept} />
 
         <Modale
-          assetData={assetData}
-          onSave={handleEmployeeSave}
           columns={assetColumns}
-          formType="asset"
+          formData={formData}
+          setFormData={setFormData}
+          formType="asset" 
         />
-        <Table columns={assetColumns} row={row} />
+        <Table columns={assetTableColumns} row={row} />
       </div>
     </div>
   );

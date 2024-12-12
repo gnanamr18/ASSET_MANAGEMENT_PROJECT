@@ -1,14 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 
-const AssetForm = (columns,assetData) => {
-    const [formData, setFormData] = useState({});
-
-    // Sync formData with assetData whenever it changes
-    useEffect(() => {
-      setFormData(assetData);
-    }, [assetData]);
-  
+const AssetForm = ({columns,setFormData,formData}) => {
     // Handle input change dynamically
     const handleChange = (e, field) => {
       setFormData({
@@ -17,18 +10,17 @@ const AssetForm = (columns,assetData) => {
       });}
   return (
     <form>
-    {columns.map((item, index) => (
+    {columns?.map((item, index) => (
       <div key={index} className="mb-3">
-          {console.log(item)}
-        <label htmlFor={item.name.toLowerCase()} className="col-form-label">
+        <label htmlFor={item.key} className="col-form-label">
           {item.name}:
         </label> */
          <input
           type="text"
           className="form-control"
-          id={item.name.toLowerCase()}
-          value={formData[item.name.toLowerCase()]}
-          onChange={(e) => handleChange(e, item.name.toLowerCase())}
+          id={item.key}
+          value={formData[item.key]}
+          onChange={(e) => handleChange(e, item.key)}
           placeholder={item.placeholder}
         />
       </div>

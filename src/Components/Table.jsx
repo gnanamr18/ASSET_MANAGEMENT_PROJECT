@@ -2,14 +2,13 @@ import React from 'react'
 import Button from './Button'
 
 const Table = ({columns,row}) => {
-  console.log(row,'row')
   return (
     <table class="table">
   <thead>
   <tr>
           {/* Rendering table headers dynamically from the columns prop */}
           {columns.map((column, index) => (
-            <th key={index} scope="col">{column.name}</th>
+            <th key={index} scope="col">{column}</th>
           ))}
         </tr>
   </thead>
