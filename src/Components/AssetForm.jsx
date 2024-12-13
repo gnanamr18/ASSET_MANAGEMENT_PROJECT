@@ -19,9 +19,10 @@ const AssetForm = ({columns,setFormData,formData}) => {
           type="text"
           className="form-control"
           id={item.key}
-          value={formData[item.key]}
+          value={formData[item.key] || ''}
           onChange={(e) => handleChange(e, item.key)}
           placeholder={item.placeholder}
+          required
         />
       </div>
     ))}

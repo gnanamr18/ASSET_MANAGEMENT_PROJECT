@@ -2,6 +2,7 @@ import React from "react";
 import EmployeeForm from "./EmployeeForm";
 import AssetForm from "./AssetForm";
 import { createAsset } from "../API/asset";
+import { Alert } from "./Alert";
 
 const Modale = ({columns,formType ,setFormData,formData }) => {
   
