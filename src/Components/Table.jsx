@@ -1,34 +1,45 @@
-import React from 'react'
-import Button from './Button'
+import React from "react";
+import Button from "./Button";
 
-const Table = ({columns,row}) => {
+const Table = ({ columns, row, component, history }) => {
   return (
-    <table class="table">
-  <thead>
-  <tr>
+    <table className="table">
+      <thead>
+        <tr>
           {/* Rendering table headers dynamically from the columns prop */}
           {columns?.map((column, index) => (
-            <th key={index} scope="col">{column}</th>
+            <th key={index} scope="col">
+              {column}
+            </th>
           ))}
         </tr>
-  </thead>
-  <tbody>
-  {row?.map((row, index) => (
-  <tr key={index}>
-    {/* Uncomment if you want to include a row index */}
-    {/* <th scope="row">{index + 1}</th> */}
-    <td>{row?.name}</td>
-    <td>{row.uniqueId}</td>
-    <td>{row.status}</td>
-    <td>
-      <Button text="Delete" className="bg-danger text-white" />
-    </td>
-  </tr>
-))}
+      </thead>
+      <tbody>
+        {row?.map((rowItem, index) => (
+          <tr key={index}>
+            {/* Rendering row data */}
+            <td>{rowItem?.name}</td>
+            <td>{rowItem?.uniqueId}</td>
+            <td>{rowItem?.status}</td>
+            <td>
+              <Button text="Delete" className="bg-danger text-white" />
+            </td>
+          </tr>
+        ))}
 
-  </tbody>
-</table>
-  )
-}
+        {component === "assetHistory" &&
+          history?.map((rowItem, index) => (
+            <tr key={`assetHistory-${index}`}>
+              <td>{rowItem?.asset?.name}</td>
+              <td>{rowItem?.employee?.name}</td>
+              <td>{rowItem?.action}</td>
+              <td>{rowItem?.actionDate}</td>
+              <td>{rowItem?.notes}</td>
+            </tr>
+          ))}
+      </tbody>
+    </table>
+  );
+};
 
-export default Table
+export default Table;

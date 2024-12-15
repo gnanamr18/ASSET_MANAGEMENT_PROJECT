@@ -1,9 +1,9 @@
 // Button.jsx
 import React from 'react';
 
-const Button = ({ text, className }) => {
+const Button = ({ text, className ,handleClick }) => {
   return (
-    <button type="button" className={`btn ${className}`}>
+    <button type="button" className={`btn ${className}` } onClick={handleClick}>
       {text}
     </button>
   );

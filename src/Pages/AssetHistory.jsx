@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../Components/Button"; // Adjust the import path if needed
-
+import { assetTableColumns } from "../Data/assetHistoryData";
+import Table from "../Components/Table";
+import { getAssetHistory } from "../API/assetHistory";
 const AssetHistory = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [history, setHistory] = useState();
 
-  const handleSearch = () => {
-    // Logic to handle search functionality
-    console.log("Searching for:", searchTerm);
+  const handleSearch = async (searchTerm) => {
+    const res = await getAssetHistory(searchTerm);
+    console.log(searchTerm)
+    setHistory(res?.data);
   };
+ 
 
   return (
     <div className="p-4">
@@ -23,10 +28,13 @@ const AssetHistory = () => {
         />
         <Button
           text="Search"
-          className="btn btn-primary  px-4 py-2 h-14 rounded-md hover:bg-blue-600"
-          // style={{ height: "52px", width: "100px" }} // Matches the height of the input and sets a fixed width
-          onClick={handleSearch}
+          className="btn-primary  px-4 py-2 h-14 rounded-md hover:bg-blue-600"
+          handleClick={()=>handleSearch(searchTerm)}
         />
+      </div>
+
+      <div>
+        <Table columns={assetTableColumns} component={"assetHistory"} history={history} />
       </div>
     </div>
   );
