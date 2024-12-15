@@ -1,19 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import EmployeeForm from "./EmployeeForm";
 import AssetForm from "./AssetForm";
 import { createAsset } from "../API/asset";
+import {createEmployee} from "../API/employee"
 import { Alert } from "./Alert";
 
-const Modale = ({columns,formType ,setFormData,formData }) => {
-  
-  const handleSubmit = async (formData) => {
-    const res = await createAsset(formData);
-    console.log(formData)
-    console.log(res, 'modale')
+const Modale = ({ columns, formType, setFormData, formData }) => {
+  const [alertData, setAlertData] = useState(false);
+
+  const handleSubmit = async (formData,createFunction) => {
+    const res = await createFunction(formData);
+    if (res) {
+      setAlertData(true);
+      setTimeout(() => {
+        setAlertData(false);
+      }, 2000);
+    } else {
+      setAlertData(false);
+    }
   };
-  const handleClose = () =>{
-    setFormData({})
-  }
+
+  ;
+  const handleClose = () => {
+    setFormData({});
+  };
 
   return (
     <div
@@ -38,19 +48,23 @@ const Modale = ({columns,formType ,setFormData,formData }) => {
               onClick={handleClose}
             ></button>
           </div>
+          <div className="p-4">
+            {alertData && <Alert alert={"Created Successfully!"} />}
+          </div>
           <div className="modal-body">
-          {formType === "asset" ? (
+            {formType === "asset" ? (
               <AssetForm
                 columns={columns}
                 setFormData={setFormData}
                 formData={formData}
-
               />
-            ) : (
+            ) : formType === "employee" ? (
               <EmployeeForm
                 columns={columns}
+                setFormData={setFormData}
+                formData={formData}
               />
-            )}
+            ) : null}
           </div>
           <div className="modal-footer">
             <button
@@ -64,9 +78,13 @@ const Modale = ({columns,formType ,setFormData,formData }) => {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={()=>{handleSubmit(formData)}}
+              onClick={() => handleSubmit(
+                formData,
+                formType === "asset" ? createAsset : createEmployee
+              )
+            }
             >
-              {formType === "asset" ? "Create Asset" : "Add Employee"}
+              {formType === "asset" ? "CreateAsset" : "Add Employee"}
             </button>
           </div>
         </div>

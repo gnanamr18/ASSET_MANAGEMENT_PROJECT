@@ -1,25 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modale from "../Components/Modale"; // Updated to import Modal component
 import Table from "../Components/Table";
+import { employeeColumns, employeeTableColumns } from "../Data/employeeData";
+import NavPills from "../Components/NavPills";
+import { getAllEmployee } from "../API/dept";
+
 
 const Employee = () => {
-  let columns = [
-    { heading:"ADD NEW EMPLOYEE",name: "Name", placeholder: "Enter the Name" },
-    { heading:"ADD NEW EMPLOYEE",name: "ID", placeholder: "Enter the ID" },
-    { heading:"ADD NEW EMPLOYEE",name: "Dept", placeholder: "Enter the Department" },
-    { heading:"ADD NEW EMPLOYEE",name: "Designation", placeholder: "Enter the Designation" },
-  ];
+  const [formData, setFormData] = useState({});
+  const [row, setRow] = useState();
+  const [dept, setDept] = useState("IT");
 
-  const [employeeData, setEmployeeData] = useState({
-    name: "",
-    id: "",
-    dept: "",
-    designation: "",
-  });
+  
 
-  const handleEmployeeSave = (data) => {
-    setEmployeeData(data);
+  const getEmployee = async (dept) => {
+    const res = await getAllEmployee(dept);
+    setRow(res.data.data);
   };
+
+    useEffect(() => {
+      if (dept) {
+        getEmployee(dept);
+      }
+    }, [dept]);
 
   return (
     <div>
@@ -32,13 +35,17 @@ const Employee = () => {
         Add employee
       </button>
 
+      <NavPills dept={dept} setDept={setDept} />
+
       <Modale
-        employeeData={employeeData}
-        onSave={handleEmployeeSave}
-        columns={columns}
+        formData={formData}
+        setFormData={setFormData}
+        columns={employeeColumns}
+        formType="employee" 
+
       />
-      <Table columns={columns} />
-    </div>
+        <Table columns={employeeTableColumns} row={row} />
+        </div>
   );
 };
 

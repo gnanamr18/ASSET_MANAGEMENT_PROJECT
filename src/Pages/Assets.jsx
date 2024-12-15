@@ -2,21 +2,21 @@ import React, { useContext, useEffect, useState } from "react";
 import Modale from "../Components/Modale"; // Updated to import Modal component
 import Table from "../Components/Table";
 import NavPills from "../Components/NavPills";
-import { getAssets } from "../API/dept";
-import { assetColumns,assetTableColumns } from "../Data/data";
+import { getAllAssets } from "../API/dept";
+import { assetColumns,assetTableColumns } from "../Data/assetData";
 
 const Assets = () => {
   const [dept, setDept] = useState("IT");
   const [row, setRow] = useState()
   const [formData, setFormData] = useState({});
   
-  const Dept = (selectDept) => {
-    setDept(selectDept);
-  };
+
   const getAsset = async (dept) => {
-    const res = await getAssets(dept);
+    const res = await getAllAssets(dept);
     setRow(res.data.data)
   };
+
+
 
   useEffect(() => {
     if (dept) {
@@ -34,7 +34,7 @@ const Assets = () => {
         >
           Add Asset
         </button>
-        <NavPills Dept={Dept} />
+        <NavPills dept={dept} setDept={setDept} />
 
         <Modale
           columns={assetColumns}

@@ -36,6 +36,12 @@ const Sidebar = () => {
               Dept
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/assetHistory">
+              <i class="bi bi-bank2"></i> 
+              AssetHistory
+            </Link>
+          </li>
         </ul>
       </div>
 

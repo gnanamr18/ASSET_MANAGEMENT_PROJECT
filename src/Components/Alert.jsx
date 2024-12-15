@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Alert = () => {
+export const Alert = ({alert}) => {
   return (
     <div class="alert alert-success" role="alert">
-      A simple success alert—check it out!
+     {alert}
     </div>
   );
 };

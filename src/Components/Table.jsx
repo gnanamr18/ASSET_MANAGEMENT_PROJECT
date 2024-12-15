@@ -7,7 +7,7 @@ const Table = ({columns,row}) => {
   <thead>
   <tr>
           {/* Rendering table headers dynamically from the columns prop */}
-          {columns.map((column, index) => (
+          {columns?.map((column, index) => (
             <th key={index} scope="col">{column}</th>
           ))}
         </tr>

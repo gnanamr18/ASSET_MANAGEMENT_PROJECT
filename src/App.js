@@ -5,6 +5,7 @@ import Employee from './Pages/Employee';
 import Dashboard from './Pages/Dashboard';
 import Assets from './Pages/Assets';
 import Dept from "./Pages/Dept"
+import AssetHistory from './Pages/AssetHistory';
 
 const App = () => {
   return (
@@ -19,6 +20,8 @@ const App = () => {
             <Route path="/employee" element={<Employee />} />
             <Route path="/stocks" element={<Assets />} />
             <Route path="/dept" element={<Dept />} />
+            <Route path="/assetHistory" element={<AssetHistory />} />
+
 
           </Routes>
         </div>
