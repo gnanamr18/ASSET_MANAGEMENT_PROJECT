@@ -44,7 +44,7 @@ const Employee = () => {
         formType="employee" 
 
       />
-        <Table columns={employeeTableColumns} row={row} />
+        <Table columns={employeeTableColumns} row={row} component={'employee'} />
         </div>
   );
 };

@@ -11,3 +11,14 @@ export const createEmployee= async (employeeData) => {
       return { error: true, message: "An unexpected error occurred" };
     }
   };
+
+  export const resignEmployee= async (employeeId) => {
+    console.log(employeeId)
+    try {
+      const resignedEmployee = await axios.put(`${baseUrl}/employee/${employeeId}`);
+      return resignedEmployee;
+    } catch (error) {
+      console.error("Unexpected Error:", error);
+      return { error: true, message: "An unexpected error occurred" };
+    }
+  };

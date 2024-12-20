@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import EmployeeForm from "./EmployeeForm";
 import AssetForm from "./AssetForm";
+import DeptForm from "./DeptForm";
 import { createAsset } from "../API/asset";
 import { createEmployee } from "../API/employee";
 import { Alert } from "./Alert";
 import IssueReturnForm from "./IssueReturnForm";
 import { assignAsset } from "../API/issueReturnAssets";
+import { createDept } from "../API/dept";
 
 const Modale = ({ columns, formType, setFormData, formData }) => {
   const [alertData, setAlertData] = useState(false);
@@ -71,6 +73,12 @@ const Modale = ({ columns, formType, setFormData, formData }) => {
                 setFormData={setFormData}
                 formData={formData}
               />
+            ) : formType === "dept" ? (
+              <DeptForm
+                columns={columns}
+                setFormData={setFormData}
+                formData={formData}
+              />
             ) : null}
           </div>
           <div className="modal-footer">
@@ -92,6 +100,8 @@ const Modale = ({ columns, formType, setFormData, formData }) => {
                     ? createAsset
                     : formType === "issueReturn"
                     ? assignAsset
+                    : formType === "dept"
+                    ? createDept
                     : createEmployee
                 )
               }
@@ -100,6 +110,8 @@ const Modale = ({ columns, formType, setFormData, formData }) => {
                 ? "Create Asset"
                 : formType === "issueReturn"
                 ? "Assign Asset"
+                : formType === "dept"
+                ? "Create Dept"
                 : "Add Employee"}
             </button>
           </div>

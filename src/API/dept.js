@@ -34,4 +34,15 @@ export const getAllEmployee = async (dept) => {
   }
 };
 
+export const createDept = async (formData) => {
+  try {
+      console.log(formData,'api')
+    const newDept = await axios.post(`${baseUrl}/dept`,formData);
+    return newDept;
+  } catch (error) {
+    console.error("Unexpected Error:", error);
+    return { error: true, message: "An unexpected error occurred" };
+  }
+};
+
 

@@ -42,7 +42,7 @@ const Assets = () => {
           setFormData={setFormData}
           formType="asset" 
         />
-        <Table columns={assetTableColumns} row={row} />
+        <Table columns={assetTableColumns} row={row} component={"asset"} />
       </div>
     </div>
   );

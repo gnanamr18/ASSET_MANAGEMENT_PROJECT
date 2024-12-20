@@ -12,3 +12,13 @@ export const createAsset = async (formData) => {
       return { error: true, message: "An unexpected error occurred" };
     }
   };
+
+  export const scrapAsset= async (assetId) => {
+    try {
+      const scrapedAsset = await axios.put(`${baseUrl}/asset/${assetId}`);
+      return scrapedAsset;
+    } catch (error) {
+      console.error("Unexpected Error:", error);
+      return { error: true, message: "An unexpected error occurred" };
+    }
+  };
