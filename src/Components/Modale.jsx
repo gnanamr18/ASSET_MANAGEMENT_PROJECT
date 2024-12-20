@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import EmployeeForm from "./EmployeeForm";
 import AssetForm from "./AssetForm";
 import { createAsset } from "../API/asset";
-import {createEmployee} from "../API/employee"
+import { createEmployee } from "../API/employee";
 import { Alert } from "./Alert";
+import IssueReturnForm from "./IssueReturnForm";
+import { assignAsset } from "../API/issueReturnAssets";
 
 const Modale = ({ columns, formType, setFormData, formData }) => {
   const [alertData, setAlertData] = useState(false);
 
-  const handleSubmit = async (formData,createFunction) => {
+  const handleSubmit = async (formData, createFunction) => {
     const res = await createFunction(formData);
     if (res) {
       setAlertData(true);
@@ -20,7 +22,6 @@ const Modale = ({ columns, formType, setFormData, formData }) => {
     }
   };
 
-  ;
   const handleClose = () => {
     setFormData({});
   };
@@ -64,6 +65,12 @@ const Modale = ({ columns, formType, setFormData, formData }) => {
                 setFormData={setFormData}
                 formData={formData}
               />
+            ) : formType === "issueReturn" ? (
+              <IssueReturnForm
+                columns={columns}
+                setFormData={setFormData}
+                formData={formData}
+              />
             ) : null}
           </div>
           <div className="modal-footer">
@@ -78,13 +85,22 @@ const Modale = ({ columns, formType, setFormData, formData }) => {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => handleSubmit(
-                formData,
-                formType === "asset" ? createAsset : createEmployee
-              )
-            }
+              onClick={() =>
+                handleSubmit(
+                  formData,
+                  formType === "asset"
+                    ? createAsset
+                    : formType === "issueReturn"
+                    ? assignAsset
+                    : createEmployee
+                )
+              }
             >
-              {formType === "asset" ? "CreateAsset" : "Add Employee"}
+              {formType === "asset"
+                ? "Create Asset"
+                : formType === "issueReturn"
+                ? "Assign Asset"
+                : "Add Employee"}
             </button>
           </div>
         </div>

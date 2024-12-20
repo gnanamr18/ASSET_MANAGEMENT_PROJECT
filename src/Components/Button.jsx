@@ -1,9 +1,18 @@
 // Button.jsx
-import React from 'react';
+import React from "react";
+import Modale from "../Components/Modale"; // Updated to import Modal component
 
-const Button = ({ text, className ,handleClick }) => {
+
+const Button = ({ text, className, handleClick,toggle,target }) => {
+  console.log(toggle,target)
   return (
-    <button type="button" className={`btn ${className}` } onClick={handleClick}>
+    <button
+      type="button"
+      data-bs-toggle={toggle}
+      data-bs-target={target}
+      className={`btn ${className}`}
+      onClick={handleClick}
+    >
       {text}
     </button>
   );
