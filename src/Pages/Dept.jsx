@@ -9,14 +9,12 @@ const Dept = () => {
 
   const getAllDept = async (dept) => {
     const res = await getDepts();
-    console.log(res)
     setRow(res?.data);
   };
 
   useEffect(() => {
     getAllDept();
   }, []);
-console.log(deptColumns)
   return (
     <div>
       <button

@@ -9,7 +9,6 @@ const AssetHistory = () => {
 
   const handleSearch = async (searchTerm) => {
     const res = await getAssetHistory(searchTerm);
-    console.log(searchTerm)
     setHistory(res?.data);
   };
  

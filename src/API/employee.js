@@ -13,7 +13,6 @@ export const createEmployee= async (employeeData) => {
   };
 
   export const resignEmployee= async (employeeId) => {
-    console.log(employeeId)
     try {
       const resignedEmployee = await axios.put(`${baseUrl}/employee/${employeeId}`);
       return resignedEmployee;

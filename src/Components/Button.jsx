@@ -4,7 +4,6 @@ import Modale from "../Components/Modale"; // Updated to import Modal component
 
 
 const Button = ({ text, className, handleClick,toggle,target }) => {
-  console.log(toggle,target)
   return (
     <button
       type="button"

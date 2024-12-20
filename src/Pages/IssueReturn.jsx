@@ -14,8 +14,6 @@ const IssueReturn = () => {
 
   const getissueReturn = async () => {
     const res = await getissueAssets();
-    console.log(res);
-    setRow(res?.data);
   };
 
   useEffect(() => {

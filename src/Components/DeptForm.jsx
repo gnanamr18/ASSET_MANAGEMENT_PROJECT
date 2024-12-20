@@ -8,7 +8,6 @@ const DeptForm = ({columns,setFormData,formData}) => {
         ...formData,
         [field]: e.target.value,
       });}
-      console.log(columns)
   return (
     <form>
     {columns?.map((item, index) => (
