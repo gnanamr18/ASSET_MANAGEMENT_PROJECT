@@ -7,13 +7,16 @@ import {
   issueReturnTableColumns,
   issueReturnColumn,
 } from "../Data/issueReturnAsset";
+import { ReturnColumn } from "../Data/returnAsset";
 
 const IssueReturn = () => {
   const [row, setRow] = useState();
   const [formData, setFormData] = useState({});
+  const [formType, setFormType] = useState("issueReturn");
 
   const getissueReturn = async () => {
     const res = await getissueAssets();
+    setRow(res?.data);
   };
 
   useEffect(() => {
@@ -37,17 +40,23 @@ const IssueReturn = () => {
             className="btn btn-primary mt-4 mb-4"
             data-bs-toggle="modal"
             data-bs-target="#employeeModal"
+            onClick={() => {
+              setFormType("return");
+            }}
           >
             Return Asset
           </button>
         </div>
 
         <Modale
-          columns={issueReturnColumn}
+          columns={
+            formType === "issueReturn" ? issueReturnColumn : ReturnColumn
+          }
           formData={formData}
           setFormData={setFormData}
-          formType="issueReturn"
+          formType={formType}
         />
+
         <h5 className="fw-bold">Last Transactions</h5>
 
         <Table

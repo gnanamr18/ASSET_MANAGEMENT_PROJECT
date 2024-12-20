@@ -15,7 +15,7 @@ const AssetHistory = () => {
 
   return (
     <div className="p-4">
-      <div>AssetHistory</div>
+      <h5 className="mt-4 mb-4">AssetHistory</h5>
       <div className="d-flex align-items-center gap-3 mb-2 mt-2">
         <input
           type="text"

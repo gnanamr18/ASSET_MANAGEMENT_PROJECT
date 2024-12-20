@@ -6,8 +6,9 @@ import { createAsset } from "../API/asset";
 import { createEmployee } from "../API/employee";
 import { Alert } from "./Alert";
 import IssueReturnForm from "./IssueReturnForm";
-import { assignAsset } from "../API/issueReturnAssets";
+import { assignAsset,returnAsset } from "../API/issueReturnAssets";
 import { createDept } from "../API/dept";
+import ReturnForm from "./ReturnForm";
 
 const Modale = ({ columns, formType, setFormData, formData }) => {
   const [alertData, setAlertData] = useState(false);
@@ -79,6 +80,12 @@ const Modale = ({ columns, formType, setFormData, formData }) => {
                 setFormData={setFormData}
                 formData={formData}
               />
+            ) : formType === "return" ? (
+              <ReturnForm
+                columns={columns}
+                setFormData={setFormData}
+                formData={formData}
+              />
             ) : null}
           </div>
           <div className="modal-footer">
@@ -100,6 +107,8 @@ const Modale = ({ columns, formType, setFormData, formData }) => {
                     ? createAsset
                     : formType === "issueReturn"
                     ? assignAsset
+                    : formType === "return"
+                    ? "returnAsset"
                     : formType === "dept"
                     ? createDept
                     : createEmployee
@@ -110,6 +119,8 @@ const Modale = ({ columns, formType, setFormData, formData }) => {
                 ? "Create Asset"
                 : formType === "issueReturn"
                 ? "Assign Asset"
+                : formType === "return"
+                ? "Return Asset"
                 : formType === "dept"
                 ? "Create Dept"
                 : "Add Employee"}
