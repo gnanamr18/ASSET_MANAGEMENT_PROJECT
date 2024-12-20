@@ -12,34 +12,35 @@ const Sidebar = () => {
       >
         <h4 className="mb-4">AssetPro</h4>
         <ul className="nav flex-column">
-          <li className="nav-item ">
-            <Link className="nav-link text-white" to="/">
-              <i className="bi bi-speedometer2"></i>
-              Dashboard
-            </Link>
-          </li>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/employee">
               <i className="bi bi-person-workspace"></i>
-              Employee
+
+              <span className="ms-2">Employee</span>
             </Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/stocks">
               <i className="bi bi-bag-fill"></i>
-              Stocks
+              <span className="ms-2">Stocks/Assets</span>
             </Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/dept">
-              <i class="bi bi-bank2"></i> 
-              Dept
+              <i class="bi bi-bank2"></i>
+              <span className="ms-2">Dept</span>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/issueReturn">
+              <i class="bi bi-arrow-left-right"></i>
+              <span className="ms-2">IssueReturn</span>
             </Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/assetHistory">
-              <i class="bi bi-bank2"></i> 
-              AssetHistory
+              <i class="bi bi-bookmarks-fill"></i>
+              <span className="ms-2">AssetHistory</span>
             </Link>
           </li>
         </ul>

@@ -37,6 +37,16 @@ const Table = ({ columns, row, component, history }) => {
               <td>{rowItem?.notes}</td>
             </tr>
           ))}
+
+        {component === "issueReturn" &&
+          history?.map((rowItem, index) => (
+            <tr key={`issueReturn-${index}`}>
+              <td>{rowItem?.uniqueId}</td>
+              <td>{rowItem?.action}</td>
+              <td>{rowItem?.actionDate}</td>
+              <td>{rowItem?.notes}</td>
+            </tr>
+          ))}
       </tbody>
     </table>
   );
