@@ -26,7 +26,7 @@ export const assignAsset = async (data) => {
 
 export const returnAsset = async (assetId) => {
   try {
-    const transaction = await axios.put(`${baseUrl}/returnAsset/${assetId}`);
+    const transaction = await axios.put(`${baseUrl}/returnAsset/${assetId?.uniqueId}`);
     return transaction;
   } catch (error) {
     console.error("Unexpected Error:", error);

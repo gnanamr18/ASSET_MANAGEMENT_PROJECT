@@ -14,6 +14,7 @@ const Modale = ({ columns, formType, setFormData, formData }) => {
   const [alertData, setAlertData] = useState(false);
 
   const handleSubmit = async (formData, createFunction) => {
+    console.log(formData)
     const res = await createFunction(formData);
     if (res) {
       setAlertData(true);
@@ -108,7 +109,7 @@ const Modale = ({ columns, formType, setFormData, formData }) => {
                     : formType === "issueReturn"
                     ? assignAsset
                     : formType === "return"
-                    ? "returnAsset"
+                    ? returnAsset
                     : formType === "dept"
                     ? createDept
                     : createEmployee
